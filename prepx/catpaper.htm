@@ -1,0 +1,440 @@
+﻿<html>
+
+<head>
+<title>PrepX-CATtest</title>
+<style type="text/css">
+.style1 {
+	font-family: "Bauhaus 93";
+	font-size: xx-large;
+	color: #800000;
+}
+.style2 {
+	font-family: "Baskerville Old Face";
+	font-size: large;
+}
+.style3 {
+	margin-left: 19px;
+}
+.style4 {
+	font-family: Algerian;
+	font-size: medium;
+}
+.style5 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: medium;
+}
+.style6 {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style7 {
+	margin-bottom: 8px;
+}
+body {
+	background-color: #CCC;
+}
+</style>
+
+<script type="text/javascript">
+var m=0;
+var s=0;
+function startTime()
+
+{
+if(s==60)
+{s=0;
+m++;
+}
+document.getElementById('layer2').innerHTML="TIME "+' &nbsp;&nbsp;&nbsp;'+m+" minutes "+s+" seconds";
+s++;
+if(m==80)
+{
+int=window.clearInterval(int);
+document.getElementById('layer2').innerHTML="TIME UP";
+document.getElementById('hid').innerHTML='<div style="position: absolute;z-index: 2; left: 40px; top: 50px"><span class="style4">Now click on submit to complete the test</span></div>';
+document.getElementById('layer9').innerHTML='';
+}
+else
+int=setTimeout('startTime()',1000);
+}
+var img18=new Image();
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body onLoad="startTime()">
+<script type="text/javascript" src="catq.js">
+</script>
+<script type="text/javascript">
+var i=0;
+
+
+var radioans=new Array();
+
+function nextq()
+{
+	
+	i=i+1
+
+	pn=document.getElementById("layer6");
+	if(i==1)
+	{
+		pn.innerHTML='<input name="Button41" type="button" value="Prev" onclick="prevq()" style="width: 55px; height: 28px">'+
+				'<input name="Button42" type="button" value="Next" onclick="nextq()" style="width: 55px; height: 28px">';
+	}
+	if(i==39)
+	{
+		pn.innerHTML='<input name="Button41" type="button" value="Prev" onclick="prevq()" style="width: 55px; height: 28px">'+
+				'<input name="Button42" type="button" value="Next" style="display:none" onclick="nextq()">';
+	}	
+	if(i>19)
+		document.getElementById("sec").innerHTML='<span class="style4">SECTION b</span>';
+	else
+		document.getElementById("sec").innerHTML='<span class="style4">SECTION a</span>';	
+			
+	if(i==15||i==16)
+	{
+		document.getElementById("layer8").innerHTML='<img src="capture.PNG" width="385" height="232" class="style7">';
+	}
+	else if(i==17||i==18||i==19)
+	{
+		document.getElementById("layer8").innerHTML='<img src="capture1.PNG" width="385" height="232" class="style7">';
+	}
+
+	else
+		document.getElementById("layer8").innerHTML='';
+
+	
+	qid=document.getElementById("layer4");
+	qid.innerHTML=q[i];
+	rid1=document.getElementById("r1");
+	rid1.innerHTML='<input name="Radio1" id="rg1" type="radio" value="1" onclick="store()">'+'<span class="style6">'+op[i][0]+'</span><br>';
+	rid2=document.getElementById("r2");
+	rid2.innerHTML='<input name="Radio1" id="rg2" type="radio" value="2" onclick="store()">' +'<span class="style6">'+op[i][1]+'</span><br>';
+	rid3=document.getElementById("r3");
+	rid3.innerHTML='<input name="Radio1" id="rg3" type="radio" value="3" onclick="store()">' +'<span class="style6">'+op[i][2]+'</span><br>';
+	rid4=document.getElementById("r4");
+	rid4.innerHTML='<input name="Radio1" id="rg4" type="radio" value="4" onclick="store()">' +'<span class="style6">'+op[i][3]+'</span><br>';
+	checked();
+	psg();
+}	
+function prevq()
+{
+	pn=document.getElementById("layer6");
+	if(i>1)
+	{
+		pn.innerHTML='<input name="Button41" type="button" value="Prev" onclick="prevq()" style="width: 55px; height: 28px">'+
+				'<input name="Button42" type="button" value="Next" onclick="nextq()" style="width: 55px; height: 28px">';
+	}
+	if(i==1)
+	{
+		pn.innerHTML='<input name="Button41" type="button" value="Prev" style="display:none" onclick="prevq()">'+
+				'<input name="Button42" type="button" value="Next" onclick="nextq()" style="width: 55px; height: 28px">';
+	}
+	i--;
+	if(i>19)
+		document.getElementById("sec").innerHTML='<span class="style4">SECTION b</span>';
+	else
+		document.getElementById("sec").innerHTML='<span class="style4">SECTION a</span>';	
+	if(i==15||i==16)
+	{
+		document.getElementById("layer8").innerHTML='<img src="capture.PNG" width="385" height="232" class="style7">';
+	}
+	else if(i==17||i==18||i==19)
+	{
+		document.getElementById("layer8").innerHTML='<img src="capture1.PNG" width="385" height="232" class="style7">';
+	}
+	else
+		document.getElementById("layer8").innerHTML='';
+		
+	qid=document.getElementById("layer4");
+	qid.innerHTML=q[i];
+	rid1=document.getElementById("r1");
+	rid1.innerHTML='<input name="Radio1" id="rg1" type="radio" value="1" onclick="store()">'+'<span class="style6">'+op[i][0]+'</span><br>';
+	rid2=document.getElementById("r2");
+	rid2.innerHTML='<input name="Radio1" id="rg2" type="radio" value="2" onclick="store()">' +'<span class="style6">'+op[i][1]+'</span><br>';
+	rid3=document.getElementById("r3");
+	rid3.innerHTML='<input name="Radio1" id="rg3" type="radio" value="3" onclick="store()">' +'<span class="style6">'+op[i][2]+'</span><br>';
+	rid4=document.getElementById("r4");
+	rid4.innerHTML='<input name="Radio1" id="rg4" type="radio" value="4" onclick="store()">' +'<span class="style6">'+op[i][3]+'</span><br>';
+	checked();
+	psg();
+}	
+
+function gotoq(m)
+{
+	i=m;
+		pn=document.getElementById("layer6");
+	if(i==39)
+	{
+		pn.innerHTML='<input name="Button41" type="button" value="Prev" onclick="prevq()" style="width: 55px; height: 28px">'+
+				'<input name="Button42" type="button" value="Next" style="display:none" onclick="nextq()">';
+	}
+	else if(i==0)
+	{
+		pn.innerHTML='<input name="Button41" type="button" value="Prev" style="display:none" onclick="prevq()">'+
+				'<input name="Button42" type="button" value="Next" onclick="nextq()" style="width: 55px; height: 28px">';
+	}
+	else
+	{
+		pn.innerHTML='<input name="Button41" type="button" value="Prev" onclick="prevq()" style="width: 55px; height: 28px">'+
+				'<input name="Button42" type="button" value="Next" onclick="nextq()" style="width: 55px; height: 28px">';
+	}
+	if(i>19)
+		document.getElementById("sec").innerHTML='<span class="style4">SECTION b</span>';
+	else
+		document.getElementById("sec").innerHTML='<span class="style4">SECTION a</span>';	
+	
+	if(i==15||i==16)
+	{
+		document.getElementById("layer8").innerHTML='<img src="capture.PNG" width="385" height="232" class="style7">';
+	}
+	else if(i==17||i==18||i==19)
+	{
+		document.getElementById("layer8").innerHTML='<img src="capture1.PNG" width="385" height="232" class="style7">';
+	}
+	else
+		document.getElementById("layer8").innerHTML='';
+	qid=document.getElementById("layer4");
+	qid.innerHTML=q[i];
+	rid1=document.getElementById("r1");
+	rid1.innerHTML='<input name="Radio1" id="rg1" type="radio" value="1" onclick="store()">'+'<span class="style6">'+op[i][0]+'</span><br>';
+	rid2=document.getElementById("r2");
+	rid2.innerHTML='<input name="Radio1" id="rg2" type="radio" value="2" onclick="store()">' +'<span class="style6">'+op[i][1]+'</span><br>';
+	rid3=document.getElementById("r3");
+	rid3.innerHTML='<input name="Radio1" id="rg3" type="radio" value="3" onclick="store()">' +'<span class="style6">'+op[i][2]+'</span><br>';
+	rid4=document.getElementById("r4");
+	rid4.innerHTML='<input name="Radio1" id="rg4" type="radio" value="4" onclick="store()">' +'<span class="style6">'+op[i][3]+'</span><br>';
+	checked();
+	psg();
+}	
+// function to store checked option in array
+function store()
+{
+	rad1=document.getElementById("rg1");
+	if(rad1.checked==true)
+		radioans[i]=rad1.getAttribute("value");
+	rad1=document.getElementById("rg2");
+	if(rad1.checked==true)
+		radioans[i]=rad1.getAttribute("value");
+	rad1=document.getElementById("rg3");
+	if(rad1.checked==true)
+		radioans[i]=rad1.getAttribute("value");
+	rad1=document.getElementById("rg4");
+	if(rad1.checked==true)
+		radioans[i]=rad1.getAttribute("value");
+	color1();	
+}
+
+//funtion to send values in database
+function send()
+{
+	var j=0;
+	ans=document.getElementById("dummy");
+	for (j=0;j<40;j++)
+	{
+		ans.value+=radioans[j]+" ";
+	}
+	var valid=confirm("Are you sure to submit?");
+	return valid;
+}
+function checked()
+{
+	if(radioans[i]==1)
+	{
+		document.getElementById("rg1").checked="checked";
+	}	
+	if(radioans[i]==2)
+	{
+		document.getElementById("rg2").checked="checked";
+	}	
+	if(radioans[i]==3)
+	{
+		document.getElementById("rg3").checked="checked";
+	}	
+	if(radioans[i]==4)
+	{
+		document.getElementById("rg4").checked="checked";
+	}	
+}
+
+function color1()
+{
+	if(i==0)
+	document.getElementById("bq1").innerHTML='<input name="Button1" type="button" value="1" style="width: 28px; color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==1)
+	document.getElementById("bq2").innerHTML='<input name="Button2" type="button" value="2" style="width: 28px; color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==2)
+	document.getElementById("bq3").innerHTML='<input name="Button3" type="button" value="3" style="width: 28px; color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==3)
+	document.getElementById("bq4").innerHTML='<input name="Button4" type="button" value="4" style="width: 28px; color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==4)
+	document.getElementById("bq5").innerHTML='<input name="Button5" type="button" value="5" style="width: 28px; color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==5)
+	document.getElementById("bq6").innerHTML='<input name="Button6" type="button" value="6" style="width: 28px; color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==6)
+	document.getElementById("bq7").innerHTML='<input name="Button7" type="button" value="7" style="width: 28px; color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==7)
+	document.getElementById("bq8").innerHTML='<input name="Button8" type="button" value="8" style="width: 28px; color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==8)
+	document.getElementById("bq9").innerHTML='<input name="Button9" type="button" value="9" style="width: 28px; color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==9)
+	document.getElementById("bq10").innerHTML='<input name="Button10" type="button" value="10" style="width: 28px; color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==10)
+	document.getElementById("bq11").innerHTML='<input name="Button11" type="button" value="11" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==11)
+	document.getElementById("bq12").innerHTML='<input name="Button12" type="button" value="12" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==12)
+	document.getElementById("bq13").innerHTML='<input name="Button13" type="button" value="13" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==13)
+	document.getElementById("bq14").innerHTML='<input name="Button14" type="button" value="14" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==14)
+	document.getElementById("bq15").innerHTML='<input name="Button15" type="button" value="15" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==15)
+	document.getElementById("bq16").innerHTML='<input name="Button16" type="button" value="16" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==16)
+	document.getElementById("bq17").innerHTML='<input name="Button17" type="button" value="17" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==17)
+	document.getElementById("bq18").innerHTML='<input name="Button18" type="button" value="18" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==18)
+	document.getElementById("bq19").innerHTML='<input name="Button19" type="button" value="19" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==19)
+	document.getElementById("bq20").innerHTML='<input name="Button20" type="button" value="20" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==20)
+	document.getElementById("bq21").innerHTML='<input name="Button21" type="button" value="21" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==21)
+	document.getElementById("bq22").innerHTML='<input name="Button22" type="button" value="22" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==22)
+	document.getElementById("bq23").innerHTML='<input name="Button23" type="button" value="23" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==23)
+	document.getElementById("bq24").innerHTML='<input name="Button24" type="button" value="24" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==24)
+	document.getElementById("bq25").innerHTML='<input name="Button25" type="button" value="25" style="width: 28px; color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==25)
+	document.getElementById("bq26").innerHTML='<input name="Button26" type="button" value="26" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==26)
+	document.getElementById("bq27").innerHTML='<input name="Button27" type="button" value="27" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==27)
+	document.getElementById("bq28").innerHTML='<input name="Button28" type="button" value="28" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==28)
+	document.getElementById("bq29").innerHTML='<input name="Button29" type="button" value="29" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==29)
+	document.getElementById("bq30").innerHTML='<input name="Button30" type="button" value="30" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==30)
+	document.getElementById("bq31").innerHTML='<input name="Button31" type="button" value="31" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==31)
+	document.getElementById("bq32").innerHTML='<input name="Button32" type="button" value="32" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==32)
+	document.getElementById("bq33").innerHTML='<input name="Button33" type="button" value="33" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==33)
+	document.getElementById("bq34").innerHTML='<input name="Button34" type="button" value="34" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==34)
+	document.getElementById("bq35").innerHTML='<input name="Button35" type="button" value="35" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==35)
+	document.getElementById("bq36").innerHTML='<input name="Button36" type="button" value="36" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==36)
+	document.getElementById("bq37").innerHTML='<input name="Button37" type="button" value="37" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==37)
+	document.getElementById("bq38").innerHTML='<input name="Button38" type="button" value="38" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	else if(i==38)
+	document.getElementById("bq39").innerHTML='<input name="Button39" type="button" value="39" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+else if(i==39)
+	document.getElementById("bq40").innerHTML='<input name="Button40" type="button" value="40" style="width: 28px ;color: #00CC99;" onClick="gotoq(value-1)">';
+	
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+	
+	
+</script>
+<p class="style1" style="width: 211px">PrepX</p>
+<div style="position: absolute; width: 406px; height: 56px; z-index: 2; left: 477px; top: 31px" id="layer2" class="style2">
+	TIME LEFT : </div>
+<div style="position: absolute; width: 959px; height: 546px; z-index: 1; left: 5px; top: 108px" id="layer1">
+	<form method="post" action="catresult.php" style="height: 499px; width: 904px" onSubmit="return send()" >
+		<div id="hid" style="height: 390px; width: 990px">
+			<div style="position: absolute; width: 113px; height: 299px; z-index: 1; left: 845px; top: 61px" id="layer3" class="style3">
+			<label id="bq1"><input name="Button1" type="button" value="1" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq2"><input name="Button2" type="button" value="2" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq3"><input name="Button3" type="button" value="3" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq4"><input name="Button4" type="button" value="4" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq5"><input name="Button5" type="button" value="5" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq6"><input name="Button6" type="button" value="6" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq7"><input name="Button7" type="button" value="7" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq8"><input name="Button8" type="button" value="8" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq9"><input name="Button9" type="button" value="9" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq10"><input name="Button10" type="button" value="10" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq11"><input name="Button11" type="button" value="11" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq12"><input name="Button12" type="button" value="12" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq13"><input name="Button13" type="button" value="13" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq14"><input name="Button14" type="button" value="14" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq15"><input name="Button15" type="button" value="15" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq16"><input name="Button16" type="button" value="16" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq17"><input name="Button17" type="button" value="17" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq18"><input name="Button18" type="button" value="18" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq19"><input name="Button19" type="button" value="19" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq20"><input name="Button20" type="button" value="20" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq21"><input name="Button21" type="button" value="21" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq22"><input name="Button22" type="button" value="22" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq23"><input name="Button23" type="button" value="23" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq24"><input name="Button24" type="button" value="24" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq25"><input name="Button25" type="button" value="25" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq26"><input name="Button26" type="button" value="26" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq27"><input name="Button27" type="button" value="27" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq28"><input name="Button28" type="button" value="28" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq29"><input name="Button29" type="button" value="29" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq30"><input name="Button30" type="button" value="30" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq31"><input name="Button31" type="button" value="31" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq32"><input name="Button32" type="button" value="32" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq33"><input name="Button33" type="button" value="33" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq34"><input name="Button34" type="button" value="34" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq35"><input name="Button35" type="button" value="35" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq36"><input name="Button36" type="button" value="36" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq37"><input name="Button37" type="button" value="37" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq38"><input name="Button38" type="button" value="38" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq39"><input name="Button39" type="button" value="39" style="width: 28px" onClick="gotoq(value-1)"></label>
+			<label id="bq40"><input name="Button40" type="button" value="40" style="width: 28px" onClick="gotoq(value-1)"></label>
+			</div>
+		<div style="position: absolute; width: 842px; height: 118px; z-index: 2; left: 5px; top: 40px" id="layer4" class="style5">
+			1) Let S<sub>n</sub> = 3+8+15+24+35+.....+n terms and S&#39;<sub>n</sub> = 
+			6+11+18+27+38+....+n terms.<br>
+&nbsp;&nbsp;&nbsp; Then the value of S20-S&#39;20 is:</div>
+		<div>
+			<p id="sec"><span class="style4">SECTION a</span></p>
+			<div style="position: absolute; width: 428px; height: 146px; z-index: 3; left: 22px; top: 183px" id="layer5">
+				<label id="r1"><input name="Radio1" id="rg1" type="radio" value="1" onClick="store()"><span class="style6">a. -45</span><br></label>
+				<label id="r2"><input name="Radio1" id="rg2" type="radio" value="2" onClick="store()"><span class="style6">b. -60</span><br></label>
+				<label id="r3"><input name="Radio1" id="rg3" type="radio" value="3" onClick="store()"><span class="style6">c. -20<br></span></label>
+			<label id="r4">	<input name="Radio1" id="rg4" type="radio" value="4" onClick="store()"><span class="style6">d. none of these</span></label></div>
+			<div style="position: absolute; width: 237px; height: 35px; z-index: 4; left: 26px; top: 348px" id="layer6">
+				<input name="Button41" type="button" value="Prev" style="display:none" onClick="prevq()">
+				<input name="Button42" type="button" value="Next" onClick="nextq()" style="width: 55px; height: 28px"></div>
+			<div style="position: absolute; width: 390px; height: 240px; z-index: 6; left: 457px; top: 182px" id="layer8">
+				<img src="capture.PNG" width="385" height="232" class="style7" style="display:none"></div>
+		</div>
+		</div>
+		&nbsp;<div style="position: absolute; width: 175px; height: 35px; z-index: 5; left: 31px; top: 400px" id="layer7">
+				<input name="Submit1" type="submit" value="Submit" style="width: 90px; height: 28px"></div>
+		
+		<input name="ans" type="text" id="dummy" value="" style="display:none">
+		<div style="position: absolute; width: 840px; height: 372px; z-index: 7; left: 96px; top: 467px" id="layer9">
+		</div>
+
+		</form>
+</div>
+</body>
+
+</html>

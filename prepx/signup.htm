@@ -1,0 +1,120 @@
+﻿<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PrepX-signup</title>
+<style type="text/css">
+.style1 {
+	color: #008080;
+	font-family: Andalus;
+	font-weight: bold;
+	font-size: small;
+}
+.style2 {
+	text-decoration: underline;
+}
+.style4 {
+	font-weight: normal;
+}
+.style5 {
+	font-size: 18pt;
+}
+.style6 {
+	font-size: large;
+}
+.style7 {
+	font-size: large;
+	font-weight: normal;
+}
+.style8 {
+	font-family: "Bookman Old Style";
+	font-size: 16pt;
+}
+.style9 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+}
+</style>
+</head>
+
+<body>
+<script type="text/javascript">
+function emptyfield()
+{
+	var valid=true;
+	reg1=document.getElementById("fn");
+	reg2=document.getElementById("un");
+	reg3=document.getElementById("pw");
+	reg4=document.getElementById("em");
+	var e1=reg3.value;//for verifying password length
+	var e=reg4.value;//for validating email
+	var atpos=e.indexOf("@");
+	var dotpos=e.lastIndexOf(".");	
+	if(reg1.value==""||reg2.value==""||reg3.value==""||reg4.value=="")
+		valid=false;
+	if(valid==false)
+		alert("all fields must be filled");
+	
+	if(valid==true && e1.length<6)
+	{
+		alert("password length should be atleast 6 characters long");
+		valid=false;
+	}		
+	if((valid==true)&&(atpos<1||dotpos<atpos+2||dotpos+2>=e.length))
+	{
+		alert("Not a valid email address");
+		valid=false;
+	}
+	return valid;
+}
+function emptyfield1()
+{
+	var valid=true;
+	l1=document.getElementById("un1");
+	l2=document.getElementById("pw1");
+	if(l1.value==""||l2.value=="")
+		valid=false;
+	if(valid==false)
+	alert("must type username & password");
+	return valid;
+}
+
+
+
+</script>
+&nbsp;<div style="width: 326px; height: 303px">
+	<div style="position: absolute; width: 441px; height: 347px; z-index: 1; left: 450px; top: 50px" id="layer1" class="style1">
+		
+		<form method="post" action="register.php" onsubmit="return emptyfield()" style="height: 368px">
+		New to PrepX ?&nbsp; <span class="style2">Signup Here<br>
+		<br>
+		</span><span class="style4"><span class="style5">Full Name</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input name="txtfn" type="text" id="fn" style="width: 209px; height: 25px"><br>
+		<span class="style6">Username&nbsp;&nbsp;&nbsp;&nbsp; </span></span>
+		<input name="txtun" type="text" id="un" style="width: 208px; height: 30px"><br>
+		<span class="style7">Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+		<input name="txtpw" type="password" id="pw" style="width: 208px; height: 34px"><br>
+		<span class="style7">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>
+		<input name="txtem" type="text" id="em" style="width: 208px; height: 33px"><br>
+		<br>
+			<input name="Submit1" type="submit" value="Register"></form>
+	</div>
+	<!--form for login-->
+	<form method="post" action="login.php" onsubmit="return emptyfield1()">
+		<span class="style6">Sign In</span><br>
+		<br>
+		<span class="style8">Username&nbsp;&nbsp;&nbsp;&nbsp;
+		<input name="txtun1" type="text" id="un1" style="width: 167px; height: 29px"><br>
+		Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input name="txtpw1" type="password" id="pw1" style="width: 166px; height: 33px"><br>
+		</span><br>
+		<input name="Submit2" type="submit" value="Log In" style="width: 95px"></form>
+</div>
+
+<p class="style9"><strong><a href="default.htm">PrepX Home</a></strong></p>
+
+</body>
+
+</html>
